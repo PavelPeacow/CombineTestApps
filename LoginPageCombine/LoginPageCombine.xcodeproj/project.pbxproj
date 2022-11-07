@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B521BA1829196D74007C6F0C /* UITextField+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521BA1729196D74007C6F0C /* UITextField+Publisher.swift */; };
 		B5C0429E2918D8E90019AAA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C0429D2918D8E90019AAA5 /* AppDelegate.swift */; };
 		B5C042A02918D8E90019AAA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C0429F2918D8E90019AAA5 /* SceneDelegate.swift */; };
 		B5C042A22918D8E90019AAA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042A12918D8E90019AAA5 /* LoginViewController.swift */; };
@@ -14,9 +15,12 @@
 		B5C042AA2918D8EA0019AAA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C042A82918D8EA0019AAA5 /* LaunchScreen.storyboard */; };
 		B5C042B22918DF460019AAA5 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042B12918DF460019AAA5 /* CustomTextField.swift */; };
 		B5C042B9291922410019AAA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042B8291922410019AAA5 /* LoginView.swift */; };
+		B5C042BB291932160019AAA5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042BA291932160019AAA5 /* LoginViewModel.swift */; };
+		B5C042BD29194E4F0019AAA5 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042BC29194E4F0019AAA5 /* Validator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B521BA1729196D74007C6F0C /* UITextField+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Publisher.swift"; sourceTree = "<group>"; };
 		B5C0429A2918D8E90019AAA5 /* LoginPageCombine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginPageCombine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C0429D2918D8E90019AAA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5C0429F2918D8E90019AAA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +30,8 @@
 		B5C042AB2918D8EA0019AAA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5C042B12918DF460019AAA5 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B5C042B8291922410019AAA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B5C042BA291932160019AAA5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B5C042BC29194E4F0019AAA5 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B521BA1929197450007C6F0C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B521BA1729196D74007C6F0C /* UITextField+Publisher.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		B5C042912918D8E90019AAA5 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +74,8 @@
 			children = (
 				B5C042B4291914AE0019AAA5 /* App */,
 				B5C042B5291914B40019AAA5 /* Subclasses */,
+				B5C042BE29194EEF0019AAA5 /* Helpers */,
+				B521BA1929197450007C6F0C /* Extension */,
 				B5C042B3291914990019AAA5 /* LoginScreen */,
 				B5C042A62918D8EA0019AAA5 /* Assets.xcassets */,
 				B5C042AB2918D8EA0019AAA5 /* Info.plist */,
@@ -72,6 +88,7 @@
 			children = (
 				B5C042B8291922410019AAA5 /* LoginView.swift */,
 				B5C042A12918D8E90019AAA5 /* LoginViewController.swift */,
+				B5C042BA291932160019AAA5 /* LoginViewModel.swift */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -92,6 +109,14 @@
 				B5C042B12918DF460019AAA5 /* CustomTextField.swift */,
 			);
 			path = Subclasses;
+			sourceTree = "<group>";
+		};
+		B5C042BE29194EEF0019AAA5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B5C042BC29194E4F0019AAA5 /* Validator.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,8 +191,11 @@
 			files = (
 				B5C042B9291922410019AAA5 /* LoginView.swift in Sources */,
 				B5C042B22918DF460019AAA5 /* CustomTextField.swift in Sources */,
+				B5C042BB291932160019AAA5 /* LoginViewModel.swift in Sources */,
 				B5C042A22918D8E90019AAA5 /* LoginViewController.swift in Sources */,
+				B5C042BD29194E4F0019AAA5 /* Validator.swift in Sources */,
 				B5C0429E2918D8E90019AAA5 /* AppDelegate.swift in Sources */,
+				B521BA1829196D74007C6F0C /* UITextField+Publisher.swift in Sources */,
 				B5C042A02918D8E90019AAA5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
