@@ -46,7 +46,6 @@ class LoginViewController: UIViewController {
             loginViewModel.validateForm
                 .receive(on: RunLoop.main)
                 .sink { [weak self] isValid in
-                    self?.loginView.forgotLabel.text = String(isValid)
                     if isValid {
                         self?.loginView.loginButton.isEnabled = true
                         self?.loginView.registrationButton.isEnabled = true
@@ -79,35 +78,31 @@ class LoginViewController: UIViewController {
         loginView.loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     
+    private func changeFormVisibility(didChange: Bool) {
+        loginView.registrationLabel.textColor = didChange ? .white : .gray
+        loginView.loginLabel.textColor = didChange ? .gray : .white
+        loginView.loginButton.isHidden = didChange ? true : false
+        loginView.loginTextfield.isHidden = didChange ? false : true
+        loginView.passwordRepeatTextfield.isHidden = didChange ? false : true
+        loginView.registrationButton.isHidden = didChange ? false : true
+        loginView.forgotLabel.isHidden = didChange ? true : false
+    }
+    
     private func animateFormChange(isDidChangeFormAnimation didChange: Bool) {
-        UIView.transition(with: loginView.loginLabel, duration: 0.3, options: .transitionCrossDissolve) { [weak self] in
-            
-            if didChange {
-                self?.loginView.registrationLabel.textColor = .white
-                self?.loginView.loginLabel.textColor = .gray
-                self?.loginView.loginTextfield.isHidden = false
-                self?.loginView.passwordRepeatTextfield.isHidden = false
-                self?.loginView.registrationButton.isHidden = false
-                self?.loginView.forgotLabel.isHidden = true
-                self?.loginView.heightConstaint.constant = 324
-            } else {
-                self?.loginView.registrationLabel.textColor = .gray
-                self?.loginView.loginLabel.textColor = .white
-                self?.loginView.loginTextfield.isHidden = true
-                self?.loginView.passwordRepeatTextfield.isHidden = true
-                self?.loginView.registrationButton.isHidden = true
-                self?.loginView.forgotLabel.isHidden = false
-                self?.loginView.heightConstaint.constant = 124
+        
+    [loginView.loginTextfield, loginView.passwordTextfield, loginView.passwordRepeatTextfield, loginView.emailTextfield]
+            .forEach {
+                $0.text = ""
+                $0.resignFirstResponder()
             }
-            
-            [self?.loginView.loginTextfield, self?.loginView.passwordTextfield, self?.loginView.passwordRepeatTextfield, self?.loginView.emailTextfield]
-                .forEach {
-                    $0?.text = ""
-                    $0?.resignFirstResponder()
-                }
-            
+        
+        if didChange { changeFormVisibility(didChange: true) }
+        else { changeFormVisibility(didChange: false) }
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear) { [weak self] in
             self?.view.layoutIfNeeded()
         }
+        
     }
 }
 
