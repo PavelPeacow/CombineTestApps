@@ -22,11 +22,23 @@ class LoginViewModel {
     var isFormValidPublisher: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest($email, $password)
             .map {
-                guard Validator.validateEmail(with: $0) else { return false }
-                guard Validator.validatePassword(with: $1) else { return false }
+                guard $0.count > 0 else { return false }
+                guard $1.count > 0 else { return false }
                 return true
             }
             .eraseToAnyPublisher()
+    }
+    
+    private func clearInput() {
+        $isSwitchedToRegistrationForm
+            .sink { [weak self] _ in
+                self?.username = ""
+                self?.email = ""
+                self?.password = ""
+                self?.repeatPassword = ""
+            }
+            .store(in: &cancallables)
+        
     }
     
     var isFullFormValidPublisher: AnyPublisher<Bool, Never> {
@@ -41,10 +53,13 @@ class LoginViewModel {
             .eraseToAnyPublisher()
     }
     
+    
+    
     var validateForm: AnyPublisher<Bool, Never> {
-        Publishers.CombineLatest(isFormValidPublisher, isFullFormValidPublisher)
-            .map { [weak self] in
-                if self!.isSwitchedToRegistrationForm {
+        Publishers.CombineLatest3(isFormValidPublisher, isFullFormValidPublisher, $isSwitchedToRegistrationForm)
+            .map { 
+                print("loh")
+                if $2 {
                     return $1
                 } else {
                     return $0
@@ -54,6 +69,7 @@ class LoginViewModel {
     }
     
     init() {
+        clearInput()
         validateForm
             .receive(on: RunLoop.main)
             .assign(to: \.isValid, on: self)

@@ -20,7 +20,7 @@ class LoginView: UIView {
     }()
     
     lazy var passwordRepeatTextfield: CustomTextField = {
-        let textfield = CustomTextField(placeholder: "Повторите пароль", leftIcon: UIImage(named: "emailIcon")!)
+        let textfield = CustomTextField(placeholder: "Повторите пароль", leftIcon: UIImage(named: "passwordIcon")!)
         textfield.isHidden = true
         return textfield
     }()
@@ -29,9 +29,20 @@ class LoginView: UIView {
     
     lazy var loginButton: UIButton = {
         let button = UIButton(configuration: UIButton.Configuration.bordered())
-        button.backgroundColor = UIColor(red: 0.851, green: 0.851, blue: 0.851, alpha: 1)
+        button.backgroundColor = .systemGray4
         button.setTitle("Войти", for: .normal)
-        button.tintColor = .systemBackground
+        button.tintColor = .white
+        button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    lazy var registrationButton: UIButton = {
+        let button = UIButton(configuration: UIButton.Configuration.bordered())
+        button.backgroundColor = .systemGray4
+        button.setTitle("Зарегистрироваться", for: .normal)
+        button.isHidden = true
+        button.tintColor = .white
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -99,10 +110,8 @@ class LoginView: UIView {
     
     init() {
         super.init(frame: .zero)
-        addSubview(mainHorizontalStackView)
-        addSubview(mainVerticalStackView)
-        addSubview(loginButton)
-        addSubview(forgotLabel)
+        
+        setUpSubviews()
         
         backgroundColor = .systemBackground
         setConstraints()
@@ -110,6 +119,13 @@ class LoginView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpSubviews() {
+        [mainHorizontalStackView, mainVerticalStackView, loginButton, registrationButton, forgotLabel]
+            .forEach {
+                addSubview($0)
+            }
     }
     
 }
@@ -125,11 +141,15 @@ extension LoginView {
             mainVerticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 62),
             mainVerticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -62),
             
-            
             loginButton.topAnchor.constraint(equalTo: mainVerticalStackView.bottomAnchor, constant: 40),
             loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             loginButton.widthAnchor.constraint(equalToConstant: 226),
             loginButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            registrationButton.topAnchor.constraint(equalTo: mainVerticalStackView.bottomAnchor, constant: 40),
+            registrationButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            registrationButton.widthAnchor.constraint(equalToConstant: 226),
+            registrationButton.heightAnchor.constraint(equalToConstant: 40),
             
             forgotLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 25),
             forgotLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
