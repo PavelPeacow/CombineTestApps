@@ -78,28 +78,29 @@ class LoginViewController: UIViewController {
         loginView.loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     
-    private func changeFormVisibility(didChange: Bool) {
-        loginView.registrationLabel.textColor = didChange ? .white : .gray
-        loginView.loginLabel.textColor = didChange ? .gray : .white
-        loginView.loginButton.isHidden = didChange ? true : false
-        loginView.loginTextfield.isHidden = didChange ? false : true
-        loginView.passwordRepeatTextfield.isHidden = didChange ? false : true
-        loginView.registrationButton.isHidden = didChange ? false : true
-        loginView.forgotLabel.isHidden = didChange ? true : false
-    }
-    
     private func animateFormChange(isDidChangeFormAnimation didChange: Bool) {
-        
-    [loginView.loginTextfield, loginView.passwordTextfield, loginView.passwordRepeatTextfield, loginView.emailTextfield]
+        [loginView.loginTextfield, loginView.passwordTextfield, loginView.passwordRepeatTextfield, loginView.emailTextfield]
             .forEach {
                 $0.text = ""
                 $0.resignFirstResponder()
             }
         
-        if didChange { changeFormVisibility(didChange: true) }
-        else { changeFormVisibility(didChange: false) }
+        loginView.registrationLabel.textColor = didChange ? .white : .gray
+        loginView.loginLabel.textColor = didChange ? .gray : .white
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear) { [weak self] in
+        //login form
+        [loginView.loginButton, loginView.forgotLabel]
+            .forEach {
+                $0.isHidden = didChange ? true : false
+            }
+        
+        //registration form
+        [loginView.loginTextfield, loginView.passwordRepeatTextfield, loginView.registrationButton, loginView.agreementLabel]
+            .forEach {
+                $0.isHidden = didChange ? false : true
+            }
+        
+        UIView.transition(with: loginView.registrationButton, duration: 0.3) { [weak self] in
             self?.view.layoutIfNeeded()
         }
         

@@ -77,22 +77,30 @@ class LoginView: UIView {
     lazy var forgotLabel: UILabel = {
         let label = UILabel()
         label.text = "Забыли пароль?"
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var mainVerticalStackView: UIStackView = {
+    lazy var agreementLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Я согласен(-на) с положениями Пользовательского соглашения и правилами проекта."
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.spacing = 32
-        stackView.distribution = .fill
-        stackView.addArrangedSubview(loginTextfield)
-        stackView.addArrangedSubview(emailTextfield)
-        stackView.addArrangedSubview(passwordTextfield)
-        stackView.addArrangedSubview(passwordRepeatTextfield)
-        stackView.addArrangedSubview(loginButton)
-        stackView.addArrangedSubview(registrationButton)
+        stackView.spacing = 40
+        stackView.distribution = .fillProportionally
+        stackView.addArrangedSubview(mainHorizontalStackView)
+        stackView.addArrangedSubview(mainVerticalStackView)
+        stackView.addArrangedSubview(mainButtonVerticalStackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -102,7 +110,7 @@ class LoginView: UIView {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.spacing = 5
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.addArrangedSubview(loginLabel)
         stackView.addArrangedSubview(dividerLabel)
         stackView.addArrangedSubview(registrationLabel)
@@ -110,10 +118,38 @@ class LoginView: UIView {
         return stackView
     }()
     
+    lazy var mainVerticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 32
+        stackView.distribution = .fill
+        stackView.addArrangedSubview(loginTextfield)
+        stackView.addArrangedSubview(emailTextfield)
+        stackView.addArrangedSubview(passwordTextfield)
+        stackView.addArrangedSubview(passwordRepeatTextfield)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var mainButtonVerticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 25
+        stackView.distribution = .fill
+        stackView.addArrangedSubview(loginButton)
+        stackView.addArrangedSubview(registrationButton)
+        stackView.addArrangedSubview(forgotLabel)
+        stackView.addArrangedSubview(agreementLabel)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+        
     init() {
         super.init(frame: .zero)
         
-        setUpSubviews()
+        addSubview(mainStackView)
         
         backgroundColor = .systemBackground
         setConstraints()
@@ -123,46 +159,32 @@ class LoginView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpSubviews() {
-        [mainHorizontalStackView, mainVerticalStackView, forgotLabel]
-            .forEach {
-                addSubview($0)
-            }
-    }
-    
 }
 
 extension LoginView {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            mainHorizontalStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            mainHorizontalStackView.bottomAnchor.constraint(equalTo: mainVerticalStackView.topAnchor, constant: -40),
+            mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 62),
+            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -62),
             
-            mainVerticalStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            mainVerticalStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            mainVerticalStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 62),
-            mainVerticalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -62),
-            
-            loginTextfield.widthAnchor.constraint(equalTo: mainVerticalStackView.widthAnchor, multiplier: 1),
+            loginTextfield.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 1),
             loginTextfield.heightAnchor.constraint(equalToConstant: 46),
 
-            emailTextfield.widthAnchor.constraint(equalTo: mainVerticalStackView.widthAnchor, multiplier: 1),
+            emailTextfield.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 1),
             emailTextfield.heightAnchor.constraint(equalToConstant: 46),
-            
-            passwordTextfield.widthAnchor.constraint(equalTo: mainVerticalStackView.widthAnchor, multiplier: 1),
+
+            passwordTextfield.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 1),
             passwordTextfield.heightAnchor.constraint(equalToConstant: 46),
-            
-            passwordRepeatTextfield.widthAnchor.constraint(equalTo: mainVerticalStackView.widthAnchor, multiplier: 1),
+
+            passwordRepeatTextfield.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 1),
             passwordRepeatTextfield.heightAnchor.constraint(equalToConstant: 46),
-            
+
             loginButton.widthAnchor.constraint(equalToConstant: 226),
             loginButton.heightAnchor.constraint(equalToConstant: 40),
-            
+
             registrationButton.widthAnchor.constraint(equalToConstant: 226),
             registrationButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            forgotLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 25),
-            forgotLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
 }
