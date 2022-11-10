@@ -8,16 +8,19 @@
 import UIKit
 import Combine
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
+    //MARK: Properties
     private let loginView = LoginView()
     private let loginViewModel = LoginViewModel()
     
     private var cancellables = Set<AnyCancellable>()
     
+    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpDelegates()
         setUpTargets()
         setUpBindings()
     }
@@ -26,6 +29,12 @@ class LoginViewController: UIViewController {
         view = loginView
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    //MARK: Bindings
     private func setUpBindings() {
         
         func bindViewToViewModel() {
@@ -43,7 +52,7 @@ class LoginViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-            loginViewModel.validateForm
+            loginViewModel.$isValid
                 .receive(on: RunLoop.main)
                 .sink { [weak self] isValid in
                     if isValid {
@@ -66,6 +75,14 @@ class LoginViewController: UIViewController {
         
         bindViewToViewModel()
         bindViewModelToView()
+    }
+    
+    //MARK: Logic
+    private func setUpDelegates() {
+        [loginView.loginTextfield, loginView.emailTextfield, loginView.passwordTextfield, loginView.passwordRepeatTextfield]
+            .forEach {
+                $0.delegate = self
+            }
     }
     
     private func setUpTargets() {
@@ -100,29 +117,37 @@ class LoginViewController: UIViewController {
                 $0.isHidden = didChange ? false : true
             }
         
-        UIView.transition(with: loginView.registrationButton, duration: 0.3) { [weak self] in
+        UIView.transition(with: loginView.mainStackView, duration: 0.3, options: .transitionFlipFromLeft) { [weak self] in
             self?.view.layoutIfNeeded()
         }
         
     }
 }
 
+//MARK: Button Targets
 extension LoginViewController {
     
-    @objc private func didTapLoginLabel() {
+    @objc func didTapLoginLabel() {
         guard loginViewModel.isSwitchedToRegistrationForm else { return }
         loginViewModel.isSwitchedToRegistrationForm = false
         print("tap")
     }
     
-    @objc private func didTapRegistrationLabel() {
+    @objc func didTapRegistrationLabel() {
         guard !loginViewModel.isSwitchedToRegistrationForm else { return }
         loginViewModel.isSwitchedToRegistrationForm = true
         print("tap register")
     }
     
-    @objc private func didTapLoginButton() {
+    @objc func didTapLoginButton() {
         print("tap login")
         loginViewModel.login()
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

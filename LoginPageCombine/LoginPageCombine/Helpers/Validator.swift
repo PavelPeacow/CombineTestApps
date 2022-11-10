@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Validator {
+final class Validator {
     
     static func validateUsername(with enteredUsername: String) -> Bool {
         let usernameFormat = "^[a-zA-Z0-9_-]{1,13}$"

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class LoginViewModel {
+final class LoginViewModel {
     @Published var username = ""
     @Published var email = ""
     @Published var password = ""
@@ -19,7 +19,7 @@ class LoginViewModel {
     
     private var cancallables = Set<AnyCancellable>()
     
-    var isFormValidPublisher: AnyPublisher<Bool, Never> {
+    private var isFormValidPublisher: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest($email, $password)
             .map {
                 guard $0.count > 0 else { return false }
@@ -41,7 +41,7 @@ class LoginViewModel {
         
     }
     
-    var isFullFormValidPublisher: AnyPublisher<Bool, Never> {
+    private var isFullFormValidPublisher: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest4($username, $email, $password, $repeatPassword)
             .map {
                 guard Validator.validateUsername(with: $0) else { return false }
@@ -55,10 +55,9 @@ class LoginViewModel {
     
     
     
-    var validateForm: AnyPublisher<Bool, Never> {
+    private var validateForm: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest3(isFormValidPublisher, isFullFormValidPublisher, $isSwitchedToRegistrationForm)
             .map { 
-                print("loh")
                 if $2 {
                     return $1
                 } else {

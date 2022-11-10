@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginView: UIView {
+final class LoginView: UIView {
     
     lazy var emailTextfield: CustomTextField = CustomTextField(placeholder: "Email", leftIcon: UIImage(named: "emailIcon")!)
     
@@ -24,8 +24,6 @@ class LoginView: UIView {
         textfield.isHidden = true
         return textfield
     }()
-    
-    var heightConstaint: NSLayoutConstraint!
     
     lazy var loginButton: UIButton = {
         let button = UIButton(configuration: UIButton.Configuration.bordered())
