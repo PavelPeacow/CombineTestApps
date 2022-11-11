@@ -67,8 +67,16 @@ final class LoginViewController: UIViewController {
             
             loginViewModel.$isSwitchedToRegistrationForm
                 .receive(on: RunLoop.main)
-                .sink { isSwitched in
-                    self.animateFormChange(isDidChangeFormAnimation: isSwitched)
+                .sink { [weak self] isSwitched in
+                    self?.animateFormChange(isDidChangeFormAnimation: isSwitched)
+                }
+                .store(in: &cancellables)
+            
+            loginViewModel.$inlineValidationError
+                .receive(on: RunLoop.main)
+                .sink { [weak self] validationStatus in
+                    print(validationStatus)
+                    self?.loginView.inlineValidatioError.text = validationStatus
                 }
                 .store(in: &cancellables)
         }
@@ -112,7 +120,7 @@ final class LoginViewController: UIViewController {
             }
         
         //registration form
-        [loginView.loginTextfield, loginView.passwordRepeatTextfield, loginView.registrationButton, loginView.agreementLabel]
+        [loginView.loginTextfield, loginView.passwordRepeatTextfield, loginView.registrationButton, loginView.agreementLabel, loginView.inlineValidatioError]
             .forEach {
                 $0.isHidden = didChange ? false : true
             }

@@ -90,6 +90,16 @@ final class LoginView: UIView {
         return label
     }()
     
+    lazy var inlineValidatioError: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .red
+        label.textAlignment = .center
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -136,6 +146,7 @@ final class LoginView: UIView {
         stackView.alignment = .fill
         stackView.spacing = 25
         stackView.distribution = .fill
+        stackView.addArrangedSubview(inlineValidatioError)
         stackView.addArrangedSubview(loginButton)
         stackView.addArrangedSubview(registrationButton)
         stackView.addArrangedSubview(forgotLabel)
