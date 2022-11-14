@@ -1,22 +1,26 @@
 //
-//  LoginView.swift
+//  RegistrationView.swift
 //  LoginPageCombine
 //
-//  Created by Павел Кай on 07.11.2022.
+//  Created by Павел Кай on 11.11.2022.
 //
 
 import UIKit
 
-final class LoginView: UIView {
-    
+final class RegistrationView: UIView {
+
     lazy var emailTextfield: CustomTextField = CustomTextField(placeholder: "Email", leftIcon: UIImage(named: "emailIcon")!)
     
     lazy var passwordTextfield: CustomTextField = CustomTextField(placeholder: "Пароль", leftIcon: UIImage(named: "passwordIcon")!)
     
-    lazy var loginButton: UIButton = {
+    lazy var loginTextfield: CustomTextField = CustomTextField(placeholder: "Почта", leftIcon: UIImage(named: "loginIcon")!)
+    
+    lazy var passwordRepeatTextfield: CustomTextField = CustomTextField(placeholder: "Повторите пароль", leftIcon: UIImage(named: "passwordIcon")!)
+    
+    lazy var registrationButton: UIButton = {
         let button = UIButton(configuration: UIButton.Configuration.bordered())
         button.backgroundColor = .systemGray4
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Зарегистрироваться", for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -26,6 +30,7 @@ final class LoginView: UIView {
     lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.text = "Вход"
+        label.textColor = .gray
         label.font = .boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
@@ -43,26 +48,36 @@ final class LoginView: UIView {
         let label = UILabel()
         label.text = "Регистрация"
         label.font = .boldSystemFont(ofSize: 24)
-        label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
         return label
     }()
     
-    lazy var forgotLabel: UILabel = {
+    lazy var agreementLabel: UILabel = {
         let label = UILabel()
-        label.text = "Забыли пароль?"
+        label.text = "Я согласен(-на) с положениями Пользовательского соглашения и правилами проекта."
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
+    lazy var inlineValidatioError: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .red
+        label.textAlignment = .center
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 40
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.addArrangedSubview(mainHorizontalStackView)
         stackView.addArrangedSubview(mainVerticalStackView)
         stackView.addArrangedSubview(mainButtonVerticalStackView)
@@ -86,11 +101,13 @@ final class LoginView: UIView {
     lazy var mainVerticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.spacing = 32
         stackView.distribution = .fill
+        stackView.addArrangedSubview(loginTextfield)
         stackView.addArrangedSubview(emailTextfield)
         stackView.addArrangedSubview(passwordTextfield)
+        stackView.addArrangedSubview(passwordRepeatTextfield)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -101,14 +118,16 @@ final class LoginView: UIView {
         stackView.alignment = .fill
         stackView.spacing = 25
         stackView.distribution = .fill
-        stackView.addArrangedSubview(loginButton)
-        stackView.addArrangedSubview(forgotLabel)
+        stackView.addArrangedSubview(inlineValidatioError)
+        stackView.addArrangedSubview(registrationButton)
+        stackView.addArrangedSubview(agreementLabel)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
         
     init() {
         super.init(frame: .zero)
+        
         addSubview(mainStackView)
         
         backgroundColor = .systemBackground
@@ -121,11 +140,14 @@ final class LoginView: UIView {
     
 }
 
-extension LoginView {
+extension RegistrationView {
     func setConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             mainStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            loginTextfield.widthAnchor.constraint(equalToConstant: 266),
+            loginTextfield.heightAnchor.constraint(equalToConstant: 46),
 
             emailTextfield.widthAnchor.constraint(equalToConstant: 266),
             emailTextfield.heightAnchor.constraint(equalToConstant: 46),
@@ -133,8 +155,12 @@ extension LoginView {
             passwordTextfield.widthAnchor.constraint(equalToConstant: 266),
             passwordTextfield.heightAnchor.constraint(equalToConstant: 46),
 
-            loginButton.widthAnchor.constraint(equalToConstant: 226),
-            loginButton.heightAnchor.constraint(equalToConstant: 40),
+            passwordRepeatTextfield.widthAnchor.constraint(equalToConstant: 266),
+            passwordRepeatTextfield.heightAnchor.constraint(equalToConstant: 46),
+
+            registrationButton.widthAnchor.constraint(equalToConstant: 226),
+            registrationButton.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 }
+

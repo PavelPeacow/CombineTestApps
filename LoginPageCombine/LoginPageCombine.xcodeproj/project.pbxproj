@@ -17,6 +17,7 @@
 		B5C042B9291922410019AAA5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042B8291922410019AAA5 /* LoginView.swift */; };
 		B5C042BB291932160019AAA5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042BA291932160019AAA5 /* LoginViewModel.swift */; };
 		B5C042BD29194E4F0019AAA5 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C042BC29194E4F0019AAA5 /* Validator.swift */; };
+		B5DF5372291EA58C00D6E980 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DF5371291EA58C00D6E980 /* RegistrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B5C042B8291922410019AAA5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B5C042BA291932160019AAA5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		B5C042BC29194E4F0019AAA5 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		B5DF5371291EA58C00D6E980 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		B5C042B3291914990019AAA5 /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
+				B5DF5371291EA58C00D6E980 /* RegistrationView.swift */,
 				B5C042B8291922410019AAA5 /* LoginView.swift */,
 				B5C042A12918D8E90019AAA5 /* LoginViewController.swift */,
 				B5C042BA291932160019AAA5 /* LoginViewModel.swift */,
@@ -192,6 +195,7 @@
 				B5C042B9291922410019AAA5 /* LoginView.swift in Sources */,
 				B5C042B22918DF460019AAA5 /* CustomTextField.swift in Sources */,
 				B5C042BB291932160019AAA5 /* LoginViewModel.swift in Sources */,
+				B5DF5372291EA58C00D6E980 /* RegistrationView.swift in Sources */,
 				B5C042A22918D8E90019AAA5 /* LoginViewController.swift in Sources */,
 				B5C042BD29194E4F0019AAA5 /* Validator.swift in Sources */,
 				B5C0429E2918D8E90019AAA5 /* AppDelegate.swift in Sources */,

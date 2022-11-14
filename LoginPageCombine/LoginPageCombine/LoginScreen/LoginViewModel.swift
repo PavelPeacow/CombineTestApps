@@ -24,7 +24,7 @@ final class LoginViewModel {
     @Published var repeatPassword = ""
     
     @Published var isValid = false
-    @Published var inlineValidationError = ""
+    @Published var inlineValidationError: String?
     
     @Published var isSwitchedToRegistrationForm = false
     
@@ -49,7 +49,16 @@ final class LoginViewModel {
                 self?.repeatPassword = ""
             }
             .store(in: &cancallables)
-        
+    }
+    
+    private func isBeginEdit() -> Bool {
+        if !username.isEmpty ||
+            !email.isEmpty ||
+            !password.isEmpty ||
+            !repeatPassword.isEmpty {
+            return true
+        }
+        return false
     }
     
     private var isFullFormValidPublisher: AnyPublisher<ValidationStatus, Never> {
@@ -64,11 +73,9 @@ final class LoginViewModel {
             .eraseToAnyPublisher()
     }
     
-    
-    
     private var validateForm: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest3(isFormValidPublisher, isFullFormValidPublisher, $isSwitchedToRegistrationForm)
-            .map { 
+            .map {
                 if $2 {
                     return $1 == .valid
                 } else {
@@ -81,26 +88,28 @@ final class LoginViewModel {
     init() {
         clearInput()
         validateForm
-            .debounce(for: 0.2, scheduler: RunLoop.main)
             .receive(on: RunLoop.main)
             .assign(to: \.isValid, on: self)
             .store(in: &cancallables)
         
         isFullFormValidPublisher
-            .debounce(for: 0.2, scheduler: RunLoop.main)
             .receive(on: RunLoop.main)
-            .map { validationStatus in
-                switch validationStatus {
-                case .valid:
-                    return ""
-                case .invalidUsername:
-                    return "Неправильный логин"
-                case .invalidEmail:
-                    return "Неправильная почта"
-                case .invalidPassword:
-                    return "Неправильный пароль"
-                case .passwordsNotMatch:
-                    return "Пароли не совпадают"
+            .map { [weak self] validationStatus in
+                if self!.isBeginEdit() {
+                    switch validationStatus {
+                    case .valid:
+                        return nil
+                    case .invalidUsername:
+                        return "Неправильный логин"
+                    case .invalidEmail:
+                        return "Неправильная почта"
+                    case .invalidPassword:
+                        return "Неправильный пароль"
+                    case .passwordsNotMatch:
+                        return "Пароли не совпадают"
+                    }
+                } else {
+                    return nil
                 }
             }
             .assign(to: \.inlineValidationError, on: self)
@@ -110,6 +119,12 @@ final class LoginViewModel {
     func login() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             print("logged")
+        }
+    }
+    
+    func registartion() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            print("registration")
         }
     }
 }
