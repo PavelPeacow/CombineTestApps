@@ -48,9 +48,9 @@ final class SettingsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with model: String) {
+    public func configure(with model: String, image: UIImage) {
         text.text = model
-        icon.image = UIImage(named: model)
+        icon.image = image
     }
     
 }

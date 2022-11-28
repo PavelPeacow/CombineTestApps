@@ -38,14 +38,16 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        profileViewModel.settingsIcon.count
+        SettingItems.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell
         
-        let settingsItem = profileViewModel.configDataSourse(indexPath: indexPath)
-        cell?.configure(with: settingsItem)
+        let title = SettingItems.allCases[indexPath.row].settingName()
+        if let image = SettingItems.allCases[indexPath.row].settingsIcon() {
+            cell?.configure(with: title, image: image)
+        }
         
         return cell ?? UITableViewCell()
     }
@@ -60,7 +62,7 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         print(indexPath)
-        if let view = profileViewModel.configureDidSelect(indexPath: indexPath) {
+        if let view = SettingItems.allCases[indexPath.row].selectedScreen() {
             navigationController?.pushViewController(view, animated: true)
         }
         

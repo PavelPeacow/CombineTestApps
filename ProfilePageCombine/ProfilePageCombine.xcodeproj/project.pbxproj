@@ -21,6 +21,7 @@
 		B565C5E52922823E00B024FA /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B565C5E42922823E00B024FA /* PaymentViewController.swift */; };
 		B565C5E72922824900B024FA /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B565C5E62922824900B024FA /* FavoriteViewController.swift */; };
 		B565C5E92922826800B024FA /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B565C5E82922826800B024FA /* AccountSettingsViewController.swift */; };
+		B5D8599F2935180D00D89DD2 /* NotificationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8599E2935180D00D89DD2 /* NotificationCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		B565C5E42922823E00B024FA /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		B565C5E62922824900B024FA /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		B565C5E82922826800B024FA /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
+		B5D8599E2935180D00D89DD2 /* NotificationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +121,12 @@
 		B565C5DE292281F600B024FA /* ProfileSettingsItemView */ = {
 			isa = PBXGroup;
 			children = (
-				B565C5DC2922810700B024FA /* NotificationViewController.swift */,
-				B565C5E02922822200B024FA /* HistoryViewController.swift */,
-				B565C5E62922824900B024FA /* FavoriteViewController.swift */,
-				B565C5E42922823E00B024FA /* PaymentViewController.swift */,
-				B565C5E82922826800B024FA /* AccountSettingsViewController.swift */,
-				B565C5E22922823400B024FA /* AdressViewController.swift */,
+				B5D859982935170E00D89DD2 /* Notification */,
+				B5D859992935171100D89DD2 /* History */,
+				B5D8599A2935171400D89DD2 /* Favorite */,
+				B5D8599B2935171600D89DD2 /* Payment */,
+				B5D8599C2935171800D89DD2 /* AccountSettings */,
+				B5D8599D2935171B00D89DD2 /* Adress */,
 			);
 			path = ProfileSettingsItemView;
 			sourceTree = "<group>";
@@ -137,6 +139,63 @@
 				B565C5D9292277A800B024FA /* ProfileViewModel.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		B5D859982935170E00D89DD2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				B565C5DC2922810700B024FA /* NotificationViewController.swift */,
+				B5D859A0293518DB00D89DD2 /* Cell */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		B5D859992935171100D89DD2 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B565C5E02922822200B024FA /* HistoryViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		B5D8599A2935171400D89DD2 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				B565C5E62922824900B024FA /* FavoriteViewController.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		B5D8599B2935171600D89DD2 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				B565C5E42922823E00B024FA /* PaymentViewController.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		B5D8599C2935171800D89DD2 /* AccountSettings */ = {
+			isa = PBXGroup;
+			children = (
+				B565C5E82922826800B024FA /* AccountSettingsViewController.swift */,
+			);
+			path = AccountSettings;
+			sourceTree = "<group>";
+		};
+		B5D8599D2935171B00D89DD2 /* Adress */ = {
+			isa = PBXGroup;
+			children = (
+				B565C5E22922823400B024FA /* AdressViewController.swift */,
+			);
+			path = Adress;
+			sourceTree = "<group>";
+		};
+		B5D859A0293518DB00D89DD2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B5D8599E2935180D00D89DD2 /* NotificationCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +275,7 @@
 				B565C5DD2922810700B024FA /* NotificationViewController.swift in Sources */,
 				B565C5D829223FA400B024FA /* ProfileView.swift in Sources */,
 				B565C5D2292235B200B024FA /* SettingsTableViewCell.swift in Sources */,
+				B5D8599F2935180D00D89DD2 /* NotificationCollectionViewCell.swift in Sources */,
 				B565C5C029222E2B00B024FA /* SceneDelegate.swift in Sources */,
 				B565C5E52922823E00B024FA /* PaymentViewController.swift in Sources */,
 				B565C5E12922822200B024FA /* HistoryViewController.swift in Sources */,
