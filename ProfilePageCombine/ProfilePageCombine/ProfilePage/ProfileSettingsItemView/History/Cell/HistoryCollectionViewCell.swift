@@ -1,17 +1,15 @@
 //
-//  NotificationCollectionViewCell.swift
+//  HistoryCollectionViewCell.swift
 //  ProfilePageCombine
 //
-//  Created by Павел Кай on 28.11.2022.
+//  Created by Павел Кай on 29.11.2022.
 //
 
 import UIKit
 
-
-
-class NotificationCollectionViewCell: UICollectionViewCell {
+class HistoryCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "NotificationCollectionViewCell"
+    static let identifier = "HistoryCollectionViewCell"
     
     private lazy var horizontalDivier: UIView = {
         let view = UIView()
@@ -22,7 +20,7 @@ class NotificationCollectionViewCell: UICollectionViewCell {
     
     private lazy var image: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "Icon")
+        image.image = UIImage(named: "pizz")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -31,23 +29,40 @@ class NotificationCollectionViewCell: UICollectionViewCell {
     private lazy var title: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.text = "Ваш заказ #HOMO1488 был принят в обработку!"
-        label.numberOfLines = 2
+        label.text = "Пицца мазурбек"
+        label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var date: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.textColor = .gray
-        label.text = "21.11.2022 21:23"
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
+        label.text = "21.11.2022 0:23"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    private lazy var price: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.text = "299 руб."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var nameAndDateStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [title, date])
+        stackView.alignment = .fill
+        stackView.spacing = 0
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     lazy var priceStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [horizontalDivier, date])
+        let stackView = UIStackView(arrangedSubviews: [horizontalDivier, price])
         stackView.alignment = .center
         stackView.spacing = 10
         stackView.axis = .horizontal
@@ -60,7 +75,7 @@ class NotificationCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(image)
         
-        contentView.addSubview(title)
+        contentView.addSubview(nameAndDateStackView)
         contentView.addSubview(priceStackView)
         
         contentView.backgroundColor = .systemGray6
@@ -68,30 +83,33 @@ class NotificationCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
     
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
 
-extension NotificationCollectionViewCell {
+extension HistoryCollectionViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            image.widthAnchor.constraint(equalToConstant: 30),
-            image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            image.widthAnchor.constraint(equalToConstant: 50),
+            image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             
-            title.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 10),
-            title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            title.trailingAnchor.constraint(equalTo: horizontalDivier.leadingAnchor, constant: -10),
+            nameAndDateStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
+            nameAndDateStackView.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 10),
+            nameAndDateStackView.trailingAnchor.constraint(equalTo: priceStackView.leadingAnchor, constant: -5),
+
             priceStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             priceStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             horizontalDivier.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             horizontalDivier.widthAnchor.constraint(equalToConstant: 1),
-            horizontalDivier.trailingAnchor.constraint(equalTo: date.leadingAnchor, constant: -10),
+            horizontalDivier.trailingAnchor.constraint(equalTo: price.leadingAnchor, constant: -10),
             
         ])
     }

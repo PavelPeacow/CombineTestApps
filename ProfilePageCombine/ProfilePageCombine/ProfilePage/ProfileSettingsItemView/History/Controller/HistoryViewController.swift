@@ -1,5 +1,5 @@
 //
-//  NotificationViewController.swift
+//  HistoryViewController.swift
 //  ProfilePageCombine
 //
 //  Created by Павел Кай on 14.11.2022.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController {
-    
+class HistoryViewController: UIViewController {
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
-        layout.itemSize = CGSize(width: 360, height: 70)
+        layout.itemSize = CGSize(width: 360, height: 60)
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.register(NotificationCollectionViewCell.self, forCellWithReuseIdentifier: NotificationCollectionViewCell.identifier)
+        collection.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: HistoryCollectionViewCell.identifier)
         collection.backgroundColor = .magenta
         return collection
     }()
@@ -38,13 +38,13 @@ class NotificationViewController: UIViewController {
 
 }
 
-extension NotificationViewController: UICollectionViewDataSource {
+extension HistoryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationCollectionViewCell.identifier, for: indexPath) as? NotificationCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCollectionViewCell.identifier, for: indexPath) as? HistoryCollectionViewCell else { return UICollectionViewCell() }
         
         return cell
     }
@@ -52,6 +52,6 @@ extension NotificationViewController: UICollectionViewDataSource {
     
 }
 
-extension NotificationViewController: UICollectionViewDelegate {
+extension HistoryViewController: UICollectionViewDelegate {
     
 }
