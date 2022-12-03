@@ -16,7 +16,7 @@ final class CustomTextField: UITextField {
         right: 10
     )
     
-    init(placeholder: String, leftIcon: UIImage) {
+    init(placeholder: String, leftIcon: UIImage, rightIcon: UIImage?) {
         super.init(frame: .zero)
         
         let iconContainer = UIView(frame: CGRect(x: 10, y: self.frame.height/2, width: 40, height: 26))
@@ -29,6 +29,18 @@ final class CustomTextField: UITextField {
         layer.cornerRadius = 5
         clipsToBounds = true
         leftViewMode = .always
+        
+        if let rightIcon = rightIcon {
+            print("loh")
+            let iconContainer = UIView(frame: CGRect(x: 10, y: self.frame.height/2, width: 40, height: 26))
+            let iconView = UIImageView(frame: CGRect(x: 10, y: self.frame.height/2, width: 26, height: 26))
+            iconView.image = rightIcon
+            iconContainer.addSubview(iconView)
+            rightView = iconContainer
+            rightViewMode = .always
+        }
+        
+       
         layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 1
         translatesAutoresizingMaskIntoConstraints = false

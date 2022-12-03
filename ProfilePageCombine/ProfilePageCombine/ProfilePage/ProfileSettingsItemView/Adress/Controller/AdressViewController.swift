@@ -10,7 +10,7 @@ import MapKit
 
 class AdressViewController: UIViewController {
     
-    lazy var adressTextField = CustomTextField(placeholder: "Адресс", leftIcon: (UIImage(systemName: "mappin.and.ellipse")?.withTintColor(.white, renderingMode: .alwaysOriginal))!)
+    lazy var adressTextField = CustomTextField(placeholder: "Адресс", leftIcon: (UIImage(systemName: "mappin.and.ellipse")?.withTintColor(.white, renderingMode: .alwaysOriginal))!, rightIcon: nil)
     
     lazy var mapView: MKMapView = {
         let map = MKMapView()
