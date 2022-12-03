@@ -24,6 +24,8 @@
 		B5D8599F2935180D00D89DD2 /* NotificationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8599E2935180D00D89DD2 /* NotificationCollectionViewCell.swift */; };
 		B5D859A2293658B100D89DD2 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D859A1293658B100D89DD2 /* HistoryCollectionViewCell.swift */; };
 		B5D859A8293661F900D89DD2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D859A7293661F800D89DD2 /* CustomTextField.swift */; };
+		B5D859AB293B2EE800D89DD2 /* PaymentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D859AA293B2EE800D89DD2 /* PaymentCollectionViewCell.swift */; };
+		B5D859AE293B33F200D89DD2 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D859AD293B33F200D89DD2 /* FavoriteCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		B5D8599E2935180D00D89DD2 /* NotificationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5D859A1293658B100D89DD2 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5D859A7293661F800D89DD2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		B5D859AA293B2EE800D89DD2 /* PaymentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCollectionViewCell.swift; sourceTree = "<group>"; };
+		B5D859AD293B33F200D89DD2 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				B565C5E62922824900B024FA /* FavoriteViewController.swift */,
+				B5D859AF293B3F9500D89DD2 /* Cell */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				B565C5E42922823E00B024FA /* PaymentViewController.swift */,
+				B5D859AC293B2F1900D89DD2 /* Cell */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -242,6 +248,22 @@
 				B5D859A7293661F800D89DD2 /* CustomTextField.swift */,
 			);
 			path = Subclass;
+			sourceTree = "<group>";
+		};
+		B5D859AC293B2F1900D89DD2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B5D859AA293B2EE800D89DD2 /* PaymentCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B5D859AF293B3F9500D89DD2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B5D859AD293B33F200D89DD2 /* FavoriteCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +343,7 @@
 				B565C5DD2922810700B024FA /* NotificationViewController.swift in Sources */,
 				B565C5D829223FA400B024FA /* ProfileView.swift in Sources */,
 				B565C5D2292235B200B024FA /* SettingsTableViewCell.swift in Sources */,
+				B5D859AE293B33F200D89DD2 /* FavoriteCollectionViewCell.swift in Sources */,
 				B5D8599F2935180D00D89DD2 /* NotificationCollectionViewCell.swift in Sources */,
 				B565C5C029222E2B00B024FA /* SceneDelegate.swift in Sources */,
 				B5D859A2293658B100D89DD2 /* HistoryCollectionViewCell.swift in Sources */,
@@ -329,6 +352,7 @@
 				B565C5E32922823400B024FA /* AdressViewController.swift in Sources */,
 				B565C5E92922826800B024FA /* AccountSettingsViewController.swift in Sources */,
 				B5D859A8293661F900D89DD2 /* CustomTextField.swift in Sources */,
+				B5D859AB293B2EE800D89DD2 /* PaymentCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,12 +16,13 @@ class HistoryViewController: UIViewController {
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(HistoryCollectionViewCell.self, forCellWithReuseIdentifier: HistoryCollectionViewCell.identifier)
-        collection.backgroundColor = .magenta
         return collection
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
         
         view.addSubview(collectionView)
         setDelegates()

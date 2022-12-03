@@ -16,12 +16,13 @@ class NotificationViewController: UIViewController {
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(NotificationCollectionViewCell.self, forCellWithReuseIdentifier: NotificationCollectionViewCell.identifier)
-        collection.backgroundColor = .magenta
         return collection
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
         
         view.addSubview(collectionView)
         setDelegates()

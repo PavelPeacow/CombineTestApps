@@ -31,7 +31,6 @@ final class CustomTextField: UITextField {
         leftViewMode = .always
         
         if let rightIcon = rightIcon {
-            print("loh")
             let iconContainer = UIView(frame: CGRect(x: 10, y: self.frame.height/2, width: 40, height: 26))
             let iconView = UIImageView(frame: CGRect(x: 10, y: self.frame.height/2, width: 26, height: 26))
             iconView.image = rightIcon
